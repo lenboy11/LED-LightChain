@@ -1,0 +1,13 @@
+{
+  "folders": [
+    {
+      "name": "LED Kette",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "files.associations": {
+      "functional": "cpp"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LED Kette</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <h1>LED Kette</h1>
+  <p><a href="/on"><button class="button">RANDOM</button></a><a href="/off"><button class="button button2">OFF</button></a></p>
+  <p><input type="range" onchange="updateSlider(this)" id="red" min="0" max="255" value="%REDVALUE%" step="1" class="slider" style="background: linear-gradient(to right, white, #FF4136) ;"></p>
+  <p><input type="range" onchange="updateSlider(this)" id="green" min="0" max="255" value="%GREENVALUE%" step="1" class="slider" style="background: linear-gradient(to right, white, #2ECC40);"></p>
+  <p><input type="range" onchange="updateSlider(this)" id="blue" min="0" max="255" value="%BLUEVALUE%" step="1" class="slider" style="background: linear-gradient(to right, white, #0074D9);"></p>
+
+  <script>
+    function updateSlider(element) {
+      //var sliderValue = document.getElementById("redSlider").value;
+      var sliderValue = element.value;
+      console.log(sliderValue);
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "/slider?" +  element.id  + "="+sliderValue, true);
+      xhr.send();
+    }
+    </script>
+</body>
+</html>

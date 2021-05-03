@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css?family=Trebuchet+MS");
+
+html {
+  display: inline-block;
+  margin: 0px auto;
+  text-align: center;
+}
+* {
+  font-family: Trebuchet MS;
+}
+h1 {
+  color: #0f3376;
+  padding: 2vh;
+}
+p {
+  font-size: 1.5rem;
+}
+.button {
+  display: inline-block;
+  background-color: #008cba;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  padding: 16px 40px;
+  text-decoration: none;
+  font-size: 22px;
+  margin: 4px;
+  margin-left: 8px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.button2 {
+  background-color: #f44336;
+}
+.slider {
+  -webkit-appearance: none;
+  margin: 14px;
+  /* max-width: 450px; */
+  width: 50vh;
+  height: 25px;
+  background: #ffd65c;
+  outline: none;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 35px;
+  height: 35px;
+  background: #003249;
+  cursor: pointer;
+}
+.slider::-moz-range-thumb {
+  width: 35px;
+  height: 35px;
+  background: #003249;
+  cursor: pointer;
+}
