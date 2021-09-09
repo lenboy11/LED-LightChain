@@ -21,6 +21,9 @@ class RGBLed {
 
 		void setColor(int rgb[3]);
 		void setColor(int red, int green, int blue);
+		void setRed(int red);
+		void setGreen(int green);
+		void setBlue(int blue);
 
 		void fadeOut(int rgb[3], int steps, int duration);
 		void fadeOut(int red, int green, int blue, int steps, int duration);

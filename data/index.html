@@ -1,27 +1,200 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>LED Kette</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="data:,">
-  <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-  <h1>LED Kette</h1>
-  <p><a href="/on"><button class="button">RANDOM</button></a><a href="/off"><button class="button button2">OFF</button></a></p>
-  <p><input type="range" onchange="updateSlider(this)" id="red" min="0" max="255" value="%REDVALUE%" step="1" class="slider" style="background: linear-gradient(to right, white, #FF4136) ;"></p>
-  <p><input type="range" onchange="updateSlider(this)" id="green" min="0" max="255" value="%GREENVALUE%" step="1" class="slider" style="background: linear-gradient(to right, white, #2ECC40);"></p>
-  <p><input type="range" onchange="updateSlider(this)" id="blue" min="0" max="255" value="%BLUEVALUE%" step="1" class="slider" style="background: linear-gradient(to right, white, #0074D9);"></p>
+  <head>
+    <title>LED Kette</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" type="text/css" href="style.css?v=1" />
+    <link rel="stylesheet" type="text/css" href="colorpicker.css" />
+    <script src="script.js"></script>
+    <script src="jscolor.js"></script>
+    <script src="main.js"></script>
+    <script src="iro.js"></script>
+  </head>
+  <body>
+    <h1>LED Kette</h1>
+    <p>
+      <input
+        type="button"
+        class="button"
+        id="onOFF"
+        onclick="ledSwitch(this)"
+        value=""
+      />
+    </p>
+    <p>
+      Rot:
+      <input
+        type="range"
+        onchange="updateSlider(this)"
+        id="red"
+        min="0"
+        max="255"
+        value="0"
+        step="1"
+        class="slider"
+        style="background: linear-gradient(to right, white, #ff4136)"
+      />
+    </p>
+    <p>
+      Grün:
+      <input
+        type="range"
+        onchange="updateSlider(this)"
+        id="green"
+        min="0"
+        max="255"
+        value="0"
+        step="1"
+        class="slider"
+        style="background: linear-gradient(to right, white, #2ecc40)"
+      />
+    </p>
+    <p>
+      Blau:
+      <input
+        type="range"
+        onchange="updateSlider(this)"
+        id="blue"
+        min="0"
+        max="255"
+        value="0"
+        step="1"
+        class="slider"
+        style="background: linear-gradient(to right, white, #0074d9)"
+      />
+    </p>
+    <p>
+      Fade:
+      <input
+        type="checkbox"
+        onchange="visibleSlider(this)"
+        id="fadeCheckBox"
+        name="Fade"
+        value="Fade"
+        checked
+      />
+      <input
+        type="range"
+        onchange=""
+        id="fadeSlider"
+        min="1"
+        max="1000"
+        value="100"
+        step="1"
+        class="slider"
+        style="background: linear-gradient(to right, white, black)"
+      />
+    </p>
+    <p>
+      <input
+        type="button"
+        id="colorFetch"
+        name="colorFetch"
+        value="Get me the colors"
+        onclick="getColor()"
+      />
+      <br />
+      <input
+        type="text"
+        id="textfieldRed"
+        name="textfieldRed"
+        size="10"
+        value="Red"
+        readonly
+        disabled
+      />
+      <input
+        type="text"
+        id="textfieldGreen"
+        name="textfieldGreen"
+        size="10"
+        value="Green"
+        readonly
+        disabled
+      />
+      <input
+        type="text"
+        id="textfieldBlue"
+        name="textfieldBlue"
+        size="10"
+        value="Blue"
+        readonly
+        disabled
+      />
+    </p>
+    <p><input type="button" value="Let me Blink" onclick="blink()" /></p>
+    <p>
+      <input
+        type="button"
+        value="Fade red"
+        id="red"
+        onclick="fadeColor(this)"
+      />
+    </p>
+    <p>
+      <input
+        type="button"
+        value="Fade green"
+        id="green"
+        onclick="fadeColor(this)"
+      />
+    </p>
+    <p>
+      <input
+        type="button"
+        value="Fade blue"
+        id="blue"
+        onclick="fadeColor(this)"
+      />
+    </p>
+    <p><input type="button" value="Fade All" id="all" onclick="fadeAll()" /></p>
+    <p>
+      <input
+        type="button"
+        value="Fade Random"
+        id="random"
+        onclick="fadeRandom()"
+      />
+    </p>
 
-  <script>
-    function updateSlider(element) {
-      //var sliderValue = document.getElementById("redSlider").value;
-      var sliderValue = element.value;
-      console.log(sliderValue);
-      var xhr = new XMLHttpRequest();
-      xhr.open("GET", "/slider?" +  element.id  + "="+sliderValue, true);
-      xhr.send();
-    }
+    <p>
+      Repetitions of Fades:
+      <input
+        type="range"
+        min="0"
+        max="100"
+        value="0"
+        class="verticalSlider"
+        id="repSilder"
+        orient="vertical"
+      />
+    </p>
+
+    <p>
+      <input
+        type="range"
+        id="FadeSpeed"
+        min="1"
+        max="100"
+        value="1"
+        step="0.5"
+        class="slider"
+        style="background: linear-gradient(to right, white, black)"
+      />
+    </p>
+
+    <button
+      class="cp"
+      data-jscolor="{valueElement:'#val1', alphaElement:'#alp1', onInput:'updatePicker(this)'}"
+    ></button>
+
+    <div class="color-picker"></div>
+    <div id="color-indicator" class="color-picker"></div>
+    <div id="color-picker"></div>
+
+    <script>
+      main();
     </script>
-</body>
+  </body>
 </html>

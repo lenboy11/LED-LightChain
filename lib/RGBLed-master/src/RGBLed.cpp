@@ -71,6 +71,30 @@ void RGBLed::setColor(int red, int green, int blue) {
 	color(red, green, blue);
 }
 
+void RGBLed::setRed(int red) {
+	if (_common == COMMON_ANODE) {
+		analogWrite(_red, ~red);
+	} else {
+		analogWrite(_red, red);
+	}
+}
+
+void RGBLed::setGreen(int green) {
+	if (_common == COMMON_ANODE) {
+		analogWrite(_green, ~green);
+	} else {
+		analogWrite(_green, green);
+	}
+}
+
+void RGBLed::setBlue(int blue) {
+	if (_common == COMMON_ANODE) {
+		analogWrite(_blue, ~blue);
+	} else {
+		analogWrite(_blue, blue);
+	}
+}
+
 void RGBLed::color(int red, int green, int blue) {
 	if (_common == COMMON_ANODE) {
 		analogWrite(_red, ~red);

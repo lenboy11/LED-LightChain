@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LED Kette Visualization</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="visualScript.js"></script>
+  </head>
+  <body>
+    <div class="new-body">
+      <div class="scene">
+        <div class="floor"></div>
+        <div class="cube">
+          <div class="cube-site cube-front" id="front"></div>
+          <div class="cube-site cube-back" id="back"></div>
+          <div class="cube-site cube-left" id="left"></div>
+          <div class="cube-site cube-right" id="right"></div>
+          <div class="cube-site cube-top" id="top">
+            <div class="ballShadow"></div>
+          </div>
+          <div class="cube-site cube-bottom" id="bottom"></div>
+        </div>
+        <div class="ball"></div>
+      </div>
+    </div>
+    <script>
+      getColor();
+    </script>
+  </body>
+</html>

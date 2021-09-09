@@ -1,0 +1,16 @@
+.color-picker {
+  position: relative;
+}
+.color-picker {
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  background-color: #fff;
+  border-radius: 20px;
+  vertical-align: middle;
+}
+#color-picker {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 40px;
+}
