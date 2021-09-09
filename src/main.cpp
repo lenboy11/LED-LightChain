@@ -1,3 +1,9 @@
+
+#define RED_PIN 13
+#define GREEN_PIN 15
+#define BLUE_PIN 12
+#define BUT_PIN 0
+
 #include <Arduino.h>
 #include <RGBLed.h>
 // #include <DNSServer.h> (only if own wifi is used)
@@ -11,22 +17,21 @@
 #include <fstream>
 #include <string>
 #include <iostream>
-#include <password.cpp>
+
 using namespace std;
 
-#define BLUE_PIN 12
-#define RED_PIN 13
-#define GREEN_PIN 15
-#define BUT_PIN 0
+
+// External variables from password.cpp
+extern const char* ssidExtern;
+extern const char* passwordExtern;
 
 // For Controller with one wifi (only if own wifi is used) 
 // #define SSID "LED Testzentrum"
 // #define WEB_PAGE_FILEPATH "/index.html"
 
 // For Controller added to home network via wifi (only if added to home network is used) 
-const char* ssid = passwordExtern;
-
-const char* password = ssidExtern;
+const char* ssid = ssidExtern;
+const char* password = passwordExtern;
 
 
 
@@ -135,8 +140,8 @@ void setup() {
   // WiFi.softAP(SSID);
 
   // overwrite IP-Adress to scripts.js - File
-  overwriteIP(WiFi.localIP(), "script.js");
-  overwriteIP(WiFi.localIP(), "visualScript.js");
+  overwriteIP(WiFi.localIP(), "/script.js");
+  overwriteIP(WiFi.localIP(), "/visualScript.js");
     
 
   /* Start DNS server for captive portal. Route all requests to the ESP IP address. (only if own wifi is used) */
@@ -480,8 +485,8 @@ void overwriteIP(IPAddress ip, const char* jsFile) {
     in.close();
     out.close();    
     // delete the original file
-    remove(jsFile);
+    SD.remove(jsFile);
     // rename old to new
-    rename("outfileTemp.txt", jsFile);
+    SPIFFS.rename("outfileTemp.txt", jsFile);
   }
 }
